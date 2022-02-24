@@ -1,15 +1,15 @@
 import { BaseMessage } from ".";
 import { MessageTransfer, MessageTransferGenerator } from "..";
 
-interface ITextMessage {
+interface IText {
 	id: string;
 	text: string;
 }
 
-export class TextMessage extends BaseMessage {
+export class Text extends BaseMessage {
 	protected text: string;
 
-	public constructor({ id, text }: ITextMessage) {
+	public constructor({ id, text }: IText) {
 		super(id);
 		this.text = text;
 	}
