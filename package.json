@@ -1,0 +1,17 @@
+{
+  "name": "bot-conversation",
+  "version": "1.0.0",
+  "description": "Zero-dependency library for chat-bot creators with deadlines.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chat-bot",
+    "conversation",
+    "algorithm",
+    "restore"
+  ],
+  "author": "Roman Melamud",
+  "license": "MIT"
+}
