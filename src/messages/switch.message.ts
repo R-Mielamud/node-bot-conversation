@@ -29,7 +29,7 @@ export class Switch extends BaseMessage {
 		this.repeatOnFallback = repeatOnFallback;
 	}
 
-	protected *_baseIterator(logger: BaseLogger): MessageTransferGenerator {
+	protected *baseIterator(logger: BaseLogger): MessageTransferGenerator {
 		const answer = yield new MessageTransfer({
 			id: this.id,
 			text: this.text,

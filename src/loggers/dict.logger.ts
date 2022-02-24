@@ -1,22 +1,29 @@
 import { BaseLogger } from ".";
 
 export class DictLogger extends BaseLogger {
+	protected readonly: boolean;
 	protected data: Record<string, string | string[]> = {};
 	protected history: string[] = [];
 
 	public log(id: string, value: string): void {
-		this.data[id] = value;
+		if (!this.readonly) {
+			this.data[id] = value;
+		}
 	}
 
 	public setArray(id: string): void {
-		this.data[id] = [];
+		if (!this.readonly) {
+			this.data[id] = [];
+		}
 	}
 
 	public addArrayItem(id: string, value: string): void {
-		(this.data[id] as string[]).push(value);
+		if (!this.readonly) {
+			(this.data[id] as string[]).push(value);
+		}
 	}
 
-	public get(id: string): string | string[] | void {
+	public get(id: string): string | string[] | undefined {
 		return this.data[id];
 	}
 
@@ -32,7 +39,11 @@ export class DictLogger extends BaseLogger {
 		this.history.push(id);
 	}
 
-	public getLastId(): string | void {
+	public toggleReadonly(isReadonly: boolean): void {
+		this.readonly = isReadonly;
+	}
+
+	public getLastId(): string | undefined {
 		if (this.history.length === 0) {
 			return;
 		}

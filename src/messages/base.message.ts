@@ -5,10 +5,10 @@ export abstract class BaseMessage {
 
 	public *iterator(logger: BaseLogger): MessageTransferGenerator {
 		logger.logLastId(this.id);
-		yield* this._baseIterator(logger);
+		yield* this.baseIterator(logger);
 	}
 
-	protected abstract _baseIterator(
+	protected abstract baseIterator(
 		logger: BaseLogger
 	): MessageTransferGenerator;
 }

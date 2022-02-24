@@ -14,7 +14,7 @@ export class Ask extends BaseMessage {
 		this.text = text;
 	}
 
-	protected *_baseIterator(logger: BaseLogger): MessageTransferGenerator {
+	protected *baseIterator(logger: BaseLogger): MessageTransferGenerator {
 		const answer = yield new MessageTransfer({
 			id: this.id,
 			text: this.text,

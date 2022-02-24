@@ -14,7 +14,7 @@ export class TerminateGroup extends BaseMessage {
 		this.child = child;
 	}
 
-	protected override *_baseIterator(
+	protected override *baseIterator(
 		logger: BaseLogger
 	): MessageTransferGenerator {
 		if (this.child) {

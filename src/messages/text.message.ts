@@ -14,7 +14,7 @@ export class Text extends BaseMessage {
 		this.text = text;
 	}
 
-	protected override *_baseIterator(): MessageTransferGenerator {
+	protected override *baseIterator(): MessageTransferGenerator {
 		yield new MessageTransfer({
 			id: this.id,
 			text: this.text,

@@ -14,7 +14,7 @@ export class Group extends BaseMessage {
 		this.children = children;
 	}
 
-	protected *_baseIterator(logger: BaseLogger): MessageTransferGenerator {
+	protected *baseIterator(logger: BaseLogger): MessageTransferGenerator {
 		for (const child of this.children) {
 			let terminated: boolean = false;
 			let prevAnswer: string | undefined;
