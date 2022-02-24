@@ -1,5 +1,5 @@
 import { BaseMessage } from ".";
-import { MessageTransferGenerator, BaseLogger } from "..";
+import { MessageTransferGenerator, BaseLogger, MessageTransfer } from "..";
 
 interface IGroup {
 	id: string;
@@ -16,7 +16,35 @@ export class Group extends BaseMessage {
 
 	protected *_baseIterator(logger: BaseLogger): MessageTransferGenerator {
 		for (const child of this.children) {
-			yield* child.iterator(logger);
+			let terminated: boolean = false;
+			let prevAnswer: string | undefined;
+
+			const iter = child.iterator(logger);
+
+			while (true) {
+				const { done, value } = iter.next(prevAnswer);
+
+				if (done || !value) {
+					break;
+				}
+
+				if (value.terminateGroup) {
+					yield new MessageTransfer({
+						id: value.id,
+						text: value.text,
+						skip: true,
+					});
+
+					terminated = true;
+					break;
+				}
+
+				yield value;
+			}
+
+			if (terminated) {
+				break;
+			}
 		}
 	}
 }

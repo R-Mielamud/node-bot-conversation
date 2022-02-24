@@ -1,13 +1,13 @@
 interface IMessageTransfer {
 	id: string;
-	text: string;
+	text?: string;
 	skip?: boolean;
 	terminateGroup?: boolean;
 }
 
 export class MessageTransfer {
 	public id: string;
-	public text: string;
+	public text?: string;
 	public skip?: boolean;
 	public terminateGroup?: boolean;
 
