@@ -1,34 +1,27 @@
 import { BaseLogger } from ".";
 
 export class DictLogger extends BaseLogger {
-	protected readonly: boolean = false;
-	protected data: Record<string, string | string[]> = {};
+	protected result: Record<string, string | string[]> = {};
 	protected history: string[] = [];
 
 	public override log(id: string, value: string): void {
-		if (!this.readonly) {
-			this.data[id] = value;
-		}
+		this.result[id] = value;
 	}
 
 	public override setArray(id: string): void {
-		if (!this.readonly) {
-			this.data[id] = [];
-		}
+		this.result[id] = [];
 	}
 
 	public override addArrayItem(id: string, value: string): void {
-		if (!this.readonly) {
-			(this.data[id] as string[]).push(value);
-		}
+		(this.result[id] as string[]).push(value);
 	}
 
 	public override get(id: string): string | string[] | undefined {
-		return this.data[id];
+		return this.result[id];
 	}
 
 	public override getResult(): Record<string, string | string[]> {
-		return this.data;
+		return this.result;
 	}
 
 	public override resetHistory(): void {

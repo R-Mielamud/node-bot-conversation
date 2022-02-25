@@ -340,12 +340,12 @@ class HelloMessage extends BaseMessage {
         logger: BaseLogger
     ): MessageTransferGenerator {
         // This is an abstract method
-        text_message = Text({
+        const textMessage = new Text({
             id: `${this.id}.text`,
             text: `Hello, ${this.username}!`,
         });
 
-        yield* text_message.iterator(logger);
+        yield* textMessage.iterator(logger);
 
         const answer = yield MessageTransfer({
             id: this.id,
@@ -473,6 +473,7 @@ class MySocketLogger extends BaseLogger {
     protected socket: Socket;
 
     public constructor() {
+        super();
         this.connectSocket();
     }
 
