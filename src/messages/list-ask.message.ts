@@ -5,13 +5,13 @@ interface IListAsk {
 	id: string;
 	text: string;
 	stopCommand: string;
-	maxCount: number;
+	maxCount?: number;
 }
 
 export class ListAsk extends BaseMessage {
 	protected text: string;
 	protected stopCommand: string;
-	protected maxCount: number;
+	protected maxCount?: number;
 
 	public constructor({ id, text, stopCommand, maxCount }: IListAsk) {
 		super(id);
@@ -31,7 +31,11 @@ export class ListAsk extends BaseMessage {
 
 		logger.setArray(this.id);
 
-		for (let count = 1; count <= this.maxCount; count++) {
+		for (
+			let count = 1;
+			this.maxCount ? count <= this.maxCount : true;
+			count++
+		) {
 			const itemId = `${this.id}.${count}`;
 
 			const answer = yield new MessageTransfer({
