@@ -15,7 +15,8 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+	"declaration": true
   },
   "include": ["./src/*"]
 }
