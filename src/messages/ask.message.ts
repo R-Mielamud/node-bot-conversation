@@ -14,12 +14,14 @@ export class Ask extends BaseMessage {
 		this.text = text;
 	}
 
-	protected *baseIterator(logger: BaseLogger): MessageTransferGenerator {
+	protected override *baseIterator(
+		logger: BaseLogger
+	): MessageTransferGenerator {
 		const answer = yield new MessageTransfer({
 			id: this.id,
 			text: this.text,
 		});
 
-		logger.log(this.id, answer);
+		logger.log(this.id, answer ?? "");
 	}
 }

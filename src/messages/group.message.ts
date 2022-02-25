@@ -14,7 +14,9 @@ export class Group extends BaseMessage {
 		this.children = children;
 	}
 
-	protected *baseIterator(logger: BaseLogger): MessageTransferGenerator {
+	protected override *baseIterator(
+		logger: BaseLogger
+	): MessageTransferGenerator {
 		for (const child of this.children) {
 			let terminated: boolean = false;
 			let prevAnswer: string | undefined;
@@ -39,7 +41,7 @@ export class Group extends BaseMessage {
 					break;
 				}
 
-				yield value;
+				prevAnswer = yield value;
 			}
 
 			if (terminated) {

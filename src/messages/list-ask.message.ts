@@ -20,7 +20,9 @@ export class ListAsk extends BaseMessage {
 		this.maxCount = maxCount;
 	}
 
-	protected *baseIterator(logger: BaseLogger): MessageTransferGenerator {
+	protected override *baseIterator(
+		logger: BaseLogger
+	): MessageTransferGenerator {
 		yield new MessageTransfer({
 			id: this.id,
 			text: this.text,
@@ -29,18 +31,24 @@ export class ListAsk extends BaseMessage {
 
 		logger.setArray(this.id);
 
-		for (let count = 0; count < this.maxCount; count++) {
+		for (let count = 1; count <= this.maxCount; count++) {
+			const itemId = `${this.id}.${count}`;
+
 			const answer = yield new MessageTransfer({
-				id: `${this.id}.${count}`,
+				id: itemId,
 			});
 
-			const isStop = answer?.toLowerCase() === this.stopCommand;
-
-			if (isStop) {
+			if (!answer) {
 				return;
 			}
 
-			logger.addArrayItem(this.id, answer);
+			logger.log(itemId, answer);
+
+			if (answer.toLowerCase() === this.stopCommand) {
+				return;
+			}
+
+			logger.addArrayItem(this.id, answer ?? "");
 		}
 	}
 }

@@ -13,5 +13,9 @@
     "restore"
   ],
   "author": "Roman Melamud",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  }
 }

@@ -22,7 +22,6 @@ export class MessageSender {
 	protected logger: BaseLogger;
 	protected baseSend: (text: string) => void;
 	protected resentMessage?: MessageTransfer;
-	protected currentMessage?: MessageTransfer;
 
 	public constructor({
 		headline,
@@ -42,21 +41,35 @@ export class MessageSender {
 	}
 
 	public sendAllSkippable(prevAnswer?: string) {
-		if (prevAnswer?.toLowerCase() === this.stopCommand) {
+		if (
+			this.stopCommand &&
+			prevAnswer?.toLowerCase() === this.stopCommand
+		) {
 			this.finished = true;
 			this.terminated = true;
 		}
 
 		if (this.resentMessage) {
 			this.send(this.resentMessage.text);
+			const skip = this.resentMessage.skip;
 			this.resentMessage = undefined;
+
+			if (!skip) {
+				return;
+			}
 		}
 
-		while (this.currentMessage.skip) {
+		while (true) {
 			const { done, value } = this.iterator.next(prevAnswer);
 
 			if (done || !value) {
 				this.finished = true;
+				break;
+			}
+
+			this.send(value.text);
+
+			if (!value.skip) {
 				break;
 			}
 		}
@@ -85,29 +98,28 @@ export class MessageSender {
 
 	protected restore() {
 		const lastId = this.logger.getLastId();
+		let answer: string | string[] | undefined;
 		this.logger.resetHistory();
 
 		if (lastId !== undefined) {
-			this.logger.toggleReadonly(true);
-
 			while (true) {
-				const { done, value } = this.iterator.next();
+				const { done, value } = this.iterator.next(
+					answer as string | undefined
+				);
 
 				if (done || !value) {
 					this.finished = true;
 					break;
 				}
 
+				this.resentMessage = value;
+
 				if (value.id === lastId) {
 					break;
 				}
 
-				this.currentMessage = value;
+				answer = this.logger.get(value.id);
 			}
-
-			this.logger.toggleReadonly(false);
 		}
-
-		this.resentMessage = this.currentMessage;
 	}
 }

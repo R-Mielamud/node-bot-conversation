@@ -29,14 +29,16 @@ export class Switch extends BaseMessage {
 		this.repeatOnFallback = repeatOnFallback;
 	}
 
-	protected *baseIterator(logger: BaseLogger): MessageTransferGenerator {
+	protected override *baseIterator(
+		logger: BaseLogger
+	): MessageTransferGenerator {
 		const answer = yield new MessageTransfer({
 			id: this.id,
 			text: this.text,
 		});
 
-		const fromMap = this.answerMap[answer];
-		logger.log(this.id, answer);
+		const fromMap = this.answerMap[answer ?? ""];
+		logger.log(this.id, answer ?? "");
 
 		if (fromMap) {
 			yield* fromMap.iterator(logger);

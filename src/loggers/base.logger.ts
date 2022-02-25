@@ -5,12 +5,11 @@ export abstract class BaseLogger {
 	public abstract get(id: string): string | string[] | undefined;
 	public abstract getResult(): Record<string, string | string[]>;
 	public resetHistory(): void {}
-	public logLastId(id: string): void {}
+	public logLastId(_id: string): void {}
 
 	public getLastId(): string | undefined {
 		return undefined;
 	}
 
-	public toggleReadonly(isReadonly: boolean): void {}
 	public finalize(): void {}
 }
