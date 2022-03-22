@@ -1,6 +1,6 @@
 {
   "name": "bot-conversation",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Zero-dependency library for chat-bot creators with deadlines.",
   "main": "index.js",
   "types": "index.d.ts",
@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
 	"build-ts": "tsc",
 	"distribute": "cp ./package.json ./dist && cp ./README.md ./dist && cp ./LICENSE ./dist",
-	"publish-npm": "npm run build-ts && npm run distribute && npm publish ./dist"
+	"publish-npm": "npm run build-ts && npm run distribute && npm publish ./dist --access public"
   },
   "keywords": [
     "chat-bot",
