@@ -1,15 +1,14 @@
 {
   "name": "bot-conversation",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "Zero-dependency library for chat-bot creators with deadlines.",
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"build": "tsc",
-	"distribute": "cp ./package.json ./dist/package.json",
-	"prepublish": "npm run build && npm run distribute",
-	"publish": "npm publish ./dist"
+	"build-ts": "tsc",
+	"distribute": "cp ./package.json ./dist && cp ./README.md ./dist && cp ./LICENSE ./dist",
+	"publish-npm": "npm run build-ts && npm run distribute && npm publish ./dist"
   },
   "keywords": [
     "chat-bot",
@@ -22,5 +21,13 @@
   "devDependencies": {
     "@types/node": "^17.0.21",
     "typescript": "^4.5.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/R-Mielamud/node-bot-conversation.git"
+  },
+  "bugs": {
+    "url": "https://github.com/R-Mielamud/node-bot-conversation/issues"
+  },
+  "homepage": "https://github.com/R-Mielamud/node-bot-conversation#readme"
 }
