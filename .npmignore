@@ -1,3 +1,7 @@
 node_modules
+src
 .editorconfig
 .gitignore
+.DS_Store
+tsconfig.json
+package-lock.json
