@@ -42,7 +42,7 @@ For full details about different message types <a href="#messages">see Messages<
 Enough theory, let's see an example!
 
 ```typescript
-import { Group, Text, Ask } from "node-conversation";
+import { Group, Text, Ask } from "bot-conversation";
 
 const fruitBotConversation = new Group({
     id: "root",
@@ -68,7 +68,7 @@ If you need something different, <a href="#own-loggers">see Creating Own Loggers
 But now let's use `DictLogger`
 
 ```typescript
-import { DictLogger } from "node-conversation";
+import { DictLogger } from "bot-conversation";
 
 const logger = new DictLogger();
 ```
@@ -84,7 +84,7 @@ The answer's simple - using a `MessageSender`!
 Example code:
 
 ```typescript
-import { Group, Text, Ask, DictLogger, MessageSender } from "node-conversation";
+import { Group, Text, Ask, DictLogger, MessageSender } from "bot-conversation";
 
 // Conversation from step 1
 const fruitBotConversation = new Group({
@@ -310,7 +310,7 @@ new Group({
 
 ### <a id="own-messages"></a>Creating Own Messages
 
-Every message is a class, so to create your own message, you just need to inherit `BaseMessage` class (It can be imported like this: `import { BaseMessage } import "node-conversation"`)
+Every message is a class, so to create your own message, you just need to inherit `BaseMessage` class (It can be imported like this: `import { BaseMessage } import "bot-conversation"`)
 
 Usage example:
 
@@ -321,7 +321,7 @@ import {
     BaseLogger,
     MessageTransfer,
     MessageTransferGenerator,
-} from "node-conversation";
+} from "bot-conversation";
 
 interface IHello {
     id: string;
@@ -467,7 +467,7 @@ And also the following virtual methods (not necessary to implement):
 Usage example:
 
 ```typescript
-import { BaseLogger } from "node-conversation";
+import { BaseLogger } from "bot-conversation";
 
 class MySocketLogger extends BaseLogger {
     protected socket: Socket;
