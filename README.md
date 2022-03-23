@@ -241,7 +241,7 @@ Usage example:
 new Switch({
     id: "fruit"
     text: "What fruit do you like?"
-    answerMap={
+    answerMap: {
         apple: new Text({ id: "apple", text: "Yeah, apples are delicious!" }),
         peach: new Text({ id: "peach", text: "Me too!" }),
         feijoa: new Text({ id: "feijoa", text: "I don't know that fruit!" }),
@@ -295,7 +295,7 @@ new Group({
         new Switch({
             id: "bye_condition",
             text: "Can I say bye?",
-            answer_map: {
+            answerMap: {
                 yes: new Text({ id: "bye", text: "Good bye!" }),
             },
             fallback: new TerminateGroup({
@@ -370,7 +370,7 @@ Constructor parameters:
 -   `id` (string) - message's unique id
 -   `text` (string?) - text, which'll be sent to user or void, if you don't want to ask any questions, you just need an answer
 -   `skip` (boolean?) - if true, this question doesn't need an answer and won't wait for it.
--   `terminate_group` (boolean?) - when this is true, group which intercepted such transfer processes it and terminates.
+-   `terminateGroup` (boolean?) - when this is true, group which intercepted such transfer processes it and terminates.
 
 Usage example in upper **Creating Own Messages** section
 

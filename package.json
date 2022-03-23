@@ -6,9 +6,9 @@
   "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"build-ts": "tsc",
-	"distribute": "cp ./package.json ./dist && cp ./README.md ./dist && cp ./LICENSE ./dist",
-	"publish-npm": "npm run build-ts && npm run distribute && npm publish ./dist --access public"
+    "build-ts": "tsc",
+    "distribute": "cp ./package.json ./dist && cp ./README.md ./dist && cp ./LICENSE ./dist",
+    "publish-npm": "npm run build-ts && npm run distribute && npm publish ./dist --access public"
   },
   "keywords": [
     "chat-bot",
